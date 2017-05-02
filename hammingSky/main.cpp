@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include <array>
+#include <fstream>
 
 using namespace std;
 
@@ -338,7 +339,7 @@ void hammingDecode(string& input, string& output)
 
 int main()
 {
-	string encoderInput("1001000");
+	/*string encoderInput("1001000");
 	string encoderOutput;
 	cout << "输入的序列：" << encoderInput << endl;
 	hammingEncode(encoderInput, encoderOutput);
@@ -359,9 +360,54 @@ int main()
 		string decoderOutput;
 		hammingDecode(decoderInput, decoderOutput);
 		cout << "纠错输出的序列：" << decoderOutput << endl;
+	}*/
+
+	////汉明码编码
+	//string encoderInput;
+	//ifstream  inFile;
+	//ofstream outFile;
+	//inFile.open("（发送方）01初始数据流.txt");
+	//outFile.open("（发送方）01汉明码数据流.txt");
+	//if (!inFile)
+	//{
+	//	cerr << "打开输入'（发送方）01初始数据流.txt'文件出错！" << endl;
+	//	return 1;
+	//}
+	//if (!outFile)
+	//{
+	//	cerr << "打开输入'（发送方）01汉明码数据流.txt'文件出错！" << endl;
+	//	return 1;
+	//}
+	//if (inFile>>encoderInput)
+	//{
+	//	string encoderOutput;
+	//	hammingEncode(encoderInput, encoderOutput);
+	//	outFile << encoderOutput;
+	//}
+
+	//汉明码译码
+	string encoderInput;
+	ifstream  inFile;
+	ofstream outFile;
+	inFile.open("（接收方）解码结果.txt");
+	outFile.open("（接收方）汉明码译码结果.txt");
+	if (!inFile)
+	{
+		cerr << "打开输入'（接收方）解码结果.txt'文件出错！" << endl;
+		return 1;
+	}
+	if (!outFile)
+	{
+		cerr << "打开输入'（接收方）汉明码译码结果.txt'文件出错！" << endl;
+		return 1;
+	}
+	if (inFile >> encoderInput)
+	{
+		string encoderOutput;
+		hammingDecode(encoderInput, encoderOutput);
+		outFile << encoderOutput;
 	}
 
-	
 	
 	
 	return 0;
