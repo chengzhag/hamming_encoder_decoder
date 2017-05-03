@@ -362,51 +362,58 @@ int main()
 		cout << "纠错输出的序列：" << decoderOutput << endl;
 	}*/
 
-	////汉明码编码
-	//string encoderInput;
-	//ifstream  inFile;
-	//ofstream outFile;
-	//inFile.open("（发送方）01初始数据流.txt");
-	//outFile.open("（发送方）01汉明码数据流.txt");
-	//if (!inFile)
-	//{
-	//	cerr << "打开输入'（发送方）01初始数据流.txt'文件出错！" << endl;
-	//	return 1;
-	//}
-	//if (!outFile)
-	//{
-	//	cerr << "打开输入'（发送方）01汉明码数据流.txt'文件出错！" << endl;
-	//	return 1;
-	//}
-	//if (inFile>>encoderInput)
-	//{
-	//	string encoderOutput;
-	//	hammingEncode(encoderInput, encoderOutput);
-	//	outFile << encoderOutput;
-	//}
-
-	//汉明码译码
+	//汉明码编码
 	string encoderInput;
 	ifstream  inFile;
 	ofstream outFile;
-	inFile.open("（接收方）解码结果.txt");
-	outFile.open("（接收方）汉明码译码结果.txt");
+	inFile.open("（发）01流.txt");
 	if (!inFile)
 	{
-		cerr << "打开输入'（接收方）解码结果.txt'文件出错！" << endl;
+		cerr << "打开'（发）01流.txt'文件出错！" << endl;
 		return 1;
 	}
+	outFile.open("（发）01流（+汉明编码）.txt");
 	if (!outFile)
 	{
-		cerr << "打开输入'（接收方）汉明码译码结果.txt'文件出错！" << endl;
+		cerr << "打开'（发）01流（+汉明编码）.txt'文件出错！" << endl;
 		return 1;
 	}
-	if (inFile >> encoderInput)
+	while (!inFile.eof())
 	{
-		string encoderOutput;
-		hammingDecode(encoderInput, encoderOutput);
-		outFile << encoderOutput;
+		if (inFile >> encoderInput)
+		{
+			string encoderOutput;
+			hammingEncode(encoderInput, encoderOutput);
+			outFile << encoderOutput<<endl;
+		}
 	}
+
+
+	////汉明码译码
+	//string encoderInput;
+	//ifstream  inFile;
+	//ofstream outFile;
+	//inFile.open("（收）01流（+汉明编码）.txt");
+	//if (!inFile)
+	//{
+	//	cerr << "打开'（收）01流（+汉明编码）.txt'文件出错！" << endl;
+	//	return 1;
+	//}
+	//outFile.open("（收）01流.txt");
+	//if (!outFile)
+	//{
+	//	cerr << "打开输入'（收）01流.txt'文件出错！" << endl;
+	//	return 1;
+	//}
+	//while (!inFile.eof())
+	//{
+	//	if (inFile >> encoderInput)
+	//	{
+	//		string encoderOutput;
+	//		hammingDecode(encoderInput, encoderOutput);
+	//		outFile << encoderOutput << endl;
+	//	}
+	//}
 
 	
 	
