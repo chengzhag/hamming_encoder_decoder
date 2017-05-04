@@ -2,7 +2,6 @@
 #include <math.h>
 #include <string>
 #include <vector>
-#include <array>
 #include <fstream>
 
 using namespace std;
@@ -62,8 +61,8 @@ void hammingEncode(string& input, string& output)
 	//cout << endl;
 
 	//计算校验位相关位
-	vector<vector<int>> relaVerifyIndexes;
-	for (int i = 0; i < dataLength; i++)
+	vector<vector<int> > relaVerifyIndexes;
+	for (int i = 0 ; i < dataLength; i++)
 	{
 		vector<int> relaVerifyIndex;
 		int dataIndex = dataIndexes[i] + 1;
@@ -91,7 +90,7 @@ void hammingEncode(string& input, string& output)
 
 	//将data-verify关系转换为bool矩阵
 	//初始化bool矩阵
-	vector<vector<bool>> relaDataVerify;//Data-行，Verify-列
+	vector<vector<bool> > relaDataVerify;//Data-行，Verify-列
 	vector<bool> colVerifyFalse;//Verify长度的false向量
 	for (int j = 0; j < verifyLength; j++)
 	{
@@ -224,7 +223,7 @@ void hammingDecode(string& input, string& output)
 	//cout << endl;
 
 	//计算校验位相关位
-	vector<vector<int>> relaVerifyIndexes;
+	vector<vector<int> > relaVerifyIndexes;
 	for (int i = 0; i < dataLength; i++)
 	{
 		vector<int> relaVerifyIndex;
@@ -253,7 +252,7 @@ void hammingDecode(string& input, string& output)
 
 	//将data-verify关系转换为bool矩阵
 	//初始化bool矩阵
-	vector<vector<bool>> relaDataVerify;//Data-行，Verify-列
+	vector<vector<bool> > relaDataVerify;//Data-行，Verify-列
 	vector<bool> colVerifyFalse;//Verify长度的false向量
 	for (int j = 0; j < verifyLength; j++)
 	{
@@ -329,7 +328,7 @@ void hammingDecode(string& input, string& output)
 			input[errorIndex] = '1';
 		}
 	}
-	
+
 	for (int i = 0; i < dataLength; i++)
 	{
 		output.push_back(input[dataIndexes[i]]);
@@ -415,7 +414,7 @@ int main()
 		}
 	}
 
-	
-	
+
+
 	return 0;
 }
